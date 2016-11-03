@@ -1,0 +1,10 @@
+*.phar
+/vendor/
+.idea
+public/assets/css/*.css
+public/assets/js/*.js
+public/coverage
+test/logs
+
+# Exclude .gitkeep files
+!.gitkeep

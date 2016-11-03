@@ -1,0 +1,19 @@
+<?php
+/**
+ * @var \TimeTracking\Renderer\Php $this
+ * @var array                      $server
+ */
+?>
+
+<table class="debug">
+    <tr>
+        <th>Name</th>
+        <th>Value</th>
+    </tr>
+    <?php foreach ($server as $name => $value): ?>
+        <tr>
+            <th><?php echo $this->escape($name); ?></th>
+            <td><?php var_dump($value); ?></td>
+        </tr>
+    <?php endforeach; ?>
+</table>

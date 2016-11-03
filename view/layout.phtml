@@ -1,0 +1,25 @@
+<?php
+/**
+ * @var \TimeTracking\Renderer\Php $this
+ * @var string                     $content
+ */
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title><?php echo $this->invoke(\TimeTracking\View\Helper\TitleViewHelper::class); ?></title>
+
+    <link rel="stylesheet" href="./assets/css/style.min.css" />
+
+    <script type="text/javascript" src="./assets/js/libraries.min.js"></script>
+    <script type="text/javascript" src="./assets/js/scripts.min.js"></script>
+
+    <?php if (TT_DEBUG): ?>
+        <link rel="stylesheet" href="./assets/css/debug.css" />
+    <?php endif; ?>
+</head>
+<body>
+<?php echo $content; ?>
+</body>
+</html>

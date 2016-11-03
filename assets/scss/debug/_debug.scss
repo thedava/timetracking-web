@@ -1,0 +1,14 @@
+.debug {
+  table& {
+    th, td.title, tr.title {
+      font-weight: bold;
+      background-color: #F47800;
+      color: #000000;
+    }
+
+    &, th, td {
+      padding: 3px;
+      border: 1px solid #000000;
+    }
+  }
+}
