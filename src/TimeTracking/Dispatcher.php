@@ -181,7 +181,7 @@ class Dispatcher
             $controller = sprintf($tpl, $this->options['controller_error']);
         }
 
-        if ($controller instanceof AbstractController) {
+        if (!$controller instanceof AbstractController) {
             $this->lastErrors[] = sprintf($this->options['e_controller_not_found'], $controller);
             $controller = sprintf($tpl, $this->options['controller_error']);
         }
