@@ -7,7 +7,6 @@ use TimeTracking\Dispatcher;
 use TimeTracking\Output\Html;
 use TimeTracking\Renderer\Php;
 use TimeTrackingTest\DispatcherTest;
-use TimeTrackingTest\Renderer\PhpTest;
 
 class HtmlTest extends \PHPUnit_Framework_TestCase
 {
@@ -42,6 +41,12 @@ class HtmlTest extends \PHPUnit_Framework_TestCase
 
         $result = $this->html->formatOutput($dispatcher, ['suffix' => __METHOD__]);
         $this->assertEquals('index:'.__METHOD__, $result);
+    }
+    
+    public function testFormatOutputWithInvalidOutput()
+    {
+        $this->setExpectedExceptionRegExp(\Exception::class, '/Invalid output given/');
+        $this->html->formatOutput($this->getDispatcher(), 'invalidOutputBecauseOutputShouldAlwaysBeAnArray');
     }
 
     public function testFormatError()
