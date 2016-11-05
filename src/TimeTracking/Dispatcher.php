@@ -3,6 +3,7 @@
 namespace TimeTracking;
 
 use TimeTracking\Controller\AbstractController;
+use TimeTracking\Core\ReflectionObject;
 use TimeTracking\Validators\MethodAccessibleValidator;
 use Zend\Validator\NotEmpty;
 use Zend\Validator\Regex;
@@ -167,7 +168,7 @@ class Dispatcher
     }
 
     /**
-     * @return string
+     * @return ReflectionObject
      */
     protected function extractController()
     {
@@ -181,40 +182,52 @@ class Dispatcher
             $controller = sprintf($tpl, $this->options['controller_error']);
         }
 
-        if (!$controller instanceof AbstractController) {
-            $this->lastErrors[] = sprintf($this->options['e_controller_not_found'], $controller);
+        try {
+            $controllerInstance = new $controller($this);
+            if (!$controllerInstance instanceof AbstractController) {
+                throw new \Exception(sprintf($this->options['e_controller_invalid'], $controller));
+            }
+        } catch (\Exception $error) {
+            $this->lastErrors[] = $error->getMessage();
             $controller = sprintf($tpl, $this->options['controller_error']);
+            $controllerInstance = new $controller($this);
         }
 
-        return $controller;
+        $this->controller = $controller;
+        return new ReflectionObject($controllerInstance);
     }
 
     /**
-     * @param string $controller
+     * @param ReflectionObject $refController
      *
-     * @return string
+     * @return \ReflectionMethod
      */
-    protected function extractAction($controller)
+    protected function extractAction(ReflectionObject $refController)
     {
         $tpl = $this->options['action_prefix'] . '%s' . $this->options['action_suffix'];
 
         $param = $this->extract($this->options['action_param'], $this->options['action_default'], $this->options['action_default']);
 
         $action = sprintf($tpl, $param);
-        $refController = new \ReflectionClass($controller);
         if ($refController->hasMethod($action)) {
             $refMethod = $refController->getMethod($action);
 
             if (!StaticValidator::execute($refMethod, MethodAccessibleValidator::class)) {
-                $this->lastErrors[] = sprintf($this->options['e_action_invalid'], $action, $controller);
+                $this->lastErrors[] = sprintf($this->options['e_action_invalid'], $action, $this->controller);
                 $action = sprintf($tpl, $this->options['action_default']);
+                $refMethod = $refController->getMethod($this->options['action_default']);
             }
-        } else {
-            $this->lastErrors[] = sprintf($this->options['e_action_not_found'], $action, $controller);
-            $action = sprintf($tpl, $this->options['action_default']);
+
+            $this->action = $action;
+            return $refMethod;
         }
 
-        return $action;
+        $this->lastErrors[] = sprintf($this->options['e_action_not_found'], $action, $this->controller);
+        $action = sprintf($tpl, $this->options['action_default']);
+        $refMethod = $refController->getMethod($this->options['action_default']);
+
+        $this->action = $action;
+        return $refMethod;
     }
 
     /**
@@ -241,17 +254,13 @@ class Dispatcher
     public function dispatch()
     {
         // Determine controller and action
-        $this->controller = $controller = $this->extractController();
-        $this->action = $action = $this->extractAction($controller);
-
-        $refController = new \ReflectionClass($controller);
-        $refMethod = $refController->getMethod($action);
+        $refController = $this->extractController();
+        $refAction = $this->extractAction($refController);
 
         // Extract parameters
-        $params = $this->extractParams($refMethod->getParameters());
+        $params = $this->extractParams($refAction->getParameters());
 
         // Invoke action
-        $controllerObject = $refController->newInstanceArgs([$this]);
-        return $refMethod->invokeArgs($controllerObject, $params);
+        return $refAction->invokeArgs($refController->getObject(), $params);
     }
 }

@@ -13,4 +13,8 @@ function check_cli_server()
 define('_ROOT_', __DIR__);
 define('TT_DEBUG', php_sapi_name() === 'cli-server');
 
+// Force timezone
+$date = require __DIR__ . '/config/date.php';
+date_default_timezone_set($date['date']['timezone']);
+
 require_once __DIR__ . '/vendor/autoload.php';

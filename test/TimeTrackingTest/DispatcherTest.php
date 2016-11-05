@@ -93,4 +93,49 @@ class DispatcherTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('PHPUnitError', $dispatcher->getController(true));
         $this->assertEquals('index', $dispatcher->getAction(true));
     }
+
+    public function testDispatchFailWithControllerNotFound()
+    {
+        $dispatcher = $this->getDispatcher([
+            static::PARAM_CONTROLLER => 'PHPUnitNotExists',
+            static::PARAM_ACTION     => '',
+        ]);
+        $result = $dispatcher->dispatch();
+
+        $this->assertEquals('PHPUnit_Error', $result);
+
+        $match = false;
+        foreach ($dispatcher->getLastErrors() as $error) {
+            if (strpos($error, 'There is no controller') === 0) {
+                $match = true;
+                break;
+            }
+        }
+        $this->assertTrue($match, 'The expected "There is no controller" error message is missing!');
+    }
+
+    public function testDispatchFailWithControllerNotChildOfAbstractController()
+    {
+        $dispatcher = $this->getDispatcher([
+            static::PARAM_CONTROLLER => 'PHPUnitOrphan',
+            static::PARAM_ACTION     => '',
+        ]);
+        $result = $dispatcher->dispatch();
+
+        $this->assertEquals('PHPUnit_Error', $result);
+
+        $match = false;
+        foreach ($dispatcher->getLastErrors() as $error) {
+            if (strpos($error, 'does not extend') !== false) {
+                $match = true;
+                break;
+            }
+        }
+        $this->assertTrue($match, 'The expected "does not extend" error message is missing!');
+    }
+
+    public function testGetOptions()
+    {
+        $this->assertArraySubset(static::getDispatcherOptions(), $this->getDispatcher()->getOptions());
+    }
 }
