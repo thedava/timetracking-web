@@ -46,7 +46,7 @@
         "phplint": "php bin/phplint.php",
         "phpcs": [
             "php bin/phpcs.php",
-            "php php-cs-fixer.phar -vvv fix --config-file data/php_cs.php"
+            "php php-cs-fixer.phar -vv fix --config-file data/php_cs.php"
         ]
     }
 }

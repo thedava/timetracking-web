@@ -3,10 +3,10 @@
 /**
  * @see https://github.com/FriendsOfPHP/PHP-CS-Fixer
  */
-$finder = Symfony\CS\Finder::create()
-    ->exclude('vendor')
-    ->in(__DIR__)
-    ->name('/\.(php|phtml)$/');
+$finder = Symfony\CS\Finder::create();
+$finder->exclude('vendor');
+$finder->in(dirname(__DIR__));
+$finder->name('/\.(php|phtml)$/');
 
 $config = Symfony\CS\Config::create();
 $config->level(null);
