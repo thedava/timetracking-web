@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @see https://github.com/FriendsOfPHP/PHP-CS-Fixer
+ */
 $finder = Symfony\CS\Finder::create()
     ->exclude('vendor')
     ->in(__DIR__)
@@ -8,6 +11,7 @@ $finder = Symfony\CS\Finder::create()
 $config = Symfony\CS\Config::create();
 $config->level(null);
 $config->finder($finder);
+$config->setUsingCache(true);
 return $config->fixers([
     'psr0',
     'encoding',
