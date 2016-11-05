@@ -14,7 +14,8 @@
         }
     },
     "config": {
-        "autoloader-suffix": "TimeTracking"
+        "autoloader-suffix": "TimeTracking",
+        "bin-compat": "full"
     },
     "require": {
         "php": ">=5.5",
@@ -29,7 +30,8 @@
     "require-dev": {
         "phpunit/phpunit": "^4.8",
         "satooshi/php-coveralls": "^1.0",
-        "phpunit/php-code-coverage": "~2.1"
+        "phpunit/php-code-coverage": "~2.1",
+        "friendsofphp/php-cs-fixer": "^1.12"
     },
     "scripts": {
         "post-install-cmd": [
@@ -42,6 +44,8 @@
             "@js"
         ],
         "coverage": "php vendor/bin/phpunit --coverage-html public/coverage",
-        "phplint": "php bin/phplint.php"
+        "phplint": "php bin/phplint.php",
+        "phpcs": "php vendor/bin/php-cs-fixer -vvv fix --config-file php_cs.php",
+        "phpcs_win": "call vendor/bin/php-cs-fixer -vvv fix --config-file php_cs.php"
     }
 }

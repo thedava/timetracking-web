@@ -1,15 +1,12 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: dava
- * Date: 01.11.16
- * Time: 19:21
- */
 
 namespace TimeTracking\Controller\Plugins;
 
 use TimeTracking\DispatcherAwareTrait;
 
+/**
+ * @codeCoverageIgnore
+ */
 trait RedirectControllerPlugin
 {
     use DispatcherAwareTrait;

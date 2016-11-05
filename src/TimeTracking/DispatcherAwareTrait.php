@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: dava
- * Date: 01.11.16
- * Time: 23:37
- */
 
 namespace TimeTracking;
 

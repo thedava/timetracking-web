@@ -1,9 +1,4 @@
 <?php
-/**
- * Class OutputInterface
- * @package TimeTracking\Output
- */
-
 
 namespace TimeTracking\Output;
 
