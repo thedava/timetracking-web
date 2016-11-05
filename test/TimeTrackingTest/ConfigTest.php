@@ -2,7 +2,6 @@
 
 namespace TimeTrackingTest;
 
-
 use TimeTracking\Config;
 
 class ConfigTest extends \PHPUnit_Framework_TestCase

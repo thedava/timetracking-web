@@ -2,7 +2,6 @@
 
 namespace TimeTrackingTest\Output;
 
-
 use TimeTracking\Dispatcher;
 use TimeTracking\Output\Json;
 

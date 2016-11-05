@@ -2,7 +2,6 @@
 
 namespace TimeTracking\Renderer;
 
-
 use TimeTracking\DispatcherAwareTrait;
 use TimeTracking\View\Helper\AbstractViewHelper;
 use TimeTracking\View\Helper\EscapeViewHelper;
@@ -28,8 +27,9 @@ class Php
      * @param string $__template
      * @param array  $__vars
      *
-     * @return mixed
      * @throws \Exception
+     *
+     * @return mixed
      */
     public function render($__template, array $__vars = [])
     {
@@ -53,8 +53,9 @@ class Php
      *
      * @param string $viewHelperClass
      *
-     * @return string
      * @throws \Exception
+     *
+     * @return string
      */
     public function invoke($viewHelperClass)
     {

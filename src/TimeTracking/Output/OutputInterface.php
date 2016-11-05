@@ -2,7 +2,6 @@
 
 namespace TimeTracking\Output;
 
-
 use TimeTracking\Dispatcher;
 
 interface OutputInterface

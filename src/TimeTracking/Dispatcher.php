@@ -234,8 +234,9 @@ class Dispatcher
     /**
      * @param array|\ReflectionParameter[] $params
      *
-     * @return array
      * @throws \Exception
+     *
+     * @return array
      */
     protected function extractParams(array $params)
     {

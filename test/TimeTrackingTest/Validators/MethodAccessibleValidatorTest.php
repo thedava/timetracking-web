@@ -2,7 +2,6 @@
 
 namespace TimeTrackingTest\Validators;
 
-
 use TimeTracking\Validators\MethodAccessibleValidator;
 use TimeTrackingTest\Mock\Object\AccessibleObject;
 

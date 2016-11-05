@@ -2,7 +2,6 @@
 
 namespace TimeTracking\Service;
 
-
 use TimeTracking\Config;
 
 class ClientConfigGenerator

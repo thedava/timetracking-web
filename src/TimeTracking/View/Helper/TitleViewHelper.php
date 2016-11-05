@@ -2,7 +2,6 @@
 
 namespace TimeTracking\View\Helper;
 
-
 use TimeTracking\Config;
 
 class TitleViewHelper extends AbstractViewHelper

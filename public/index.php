@@ -15,5 +15,3 @@ try {
 } catch (Exception $error) {
     echo $output->formatError($dispatcher, $error);
 }
-
-

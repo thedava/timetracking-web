@@ -2,7 +2,6 @@
 
 namespace TimeTracking;
 
-
 trait DispatcherAwareTrait
 {
     /** @var Dispatcher */

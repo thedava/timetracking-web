@@ -2,7 +2,7 @@
 
 return [
     'test1' => true,
-    'test' => [
+    'test'  => [
         'testKey1' => true,
     ],
 ];

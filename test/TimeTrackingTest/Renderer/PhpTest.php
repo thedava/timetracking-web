@@ -2,7 +2,6 @@
 
 namespace TimeTrackingTest\Renderer;
 
-
 use TimeTracking\Dispatcher;
 use TimeTracking\Renderer\Php;
 use TimeTracking\View\Helper\TitleViewHelper;

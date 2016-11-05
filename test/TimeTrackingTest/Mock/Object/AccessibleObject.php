@@ -29,6 +29,5 @@ abstract class AccessibleObject
 
     protected function __destruct()
     {
-
     }
 }

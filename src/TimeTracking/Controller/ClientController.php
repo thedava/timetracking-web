@@ -2,7 +2,6 @@
 
 namespace TimeTracking\Controller;
 
-
 use TimeTracking\Config;
 use TimeTracking\Controller\Plugins\RedirectControllerPlugin;
 use TimeTracking\Service\ClientConfigGenerator;

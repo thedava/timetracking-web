@@ -2,7 +2,6 @@
 
 namespace TimeTracking\View\Helper;
 
-
 use TimeTracking\Renderer\Php;
 
 abstract class AbstractViewHelper

@@ -2,7 +2,6 @@
 
 namespace TimeTrackingTest;
 
-
 use TimeTracking\Dispatcher;
 use TimeTrackingTest\Mock\Controller\PHPUnitController;
 use TimeTrackingTest\Mock\Controller\PHPUnitDefaultController;

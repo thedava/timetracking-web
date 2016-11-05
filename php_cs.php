@@ -1,7 +1,5 @@
 <?php
 
-// https://github.com/FriendsOfPHP/PHP-CS-Fixer
-
 $finder = Symfony\CS\Finder::create()
     ->exclude('vendor')
     ->in(__DIR__)

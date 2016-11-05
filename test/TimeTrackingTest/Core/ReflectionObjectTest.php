@@ -2,7 +2,6 @@
 
 namespace TimeTrackingTest\Core;
 
-
 use TimeTracking\Core\ReflectionObject;
 
 class ReflectionObjectTest extends \PHPUnit_Framework_TestCase

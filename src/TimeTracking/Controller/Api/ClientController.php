@@ -2,7 +2,6 @@
 
 namespace TimeTracking\Controller\Api;
 
-
 use TimeTracking\Controller\AbstractController;
 use TimeTracking\Service\ClientConfigGenerator;
 

@@ -2,7 +2,6 @@
 
 namespace TimeTrackingTest\Output;
 
-
 use TimeTracking\Dispatcher;
 use TimeTracking\Output\Html;
 use TimeTracking\Renderer\Php;
@@ -22,7 +21,7 @@ class HtmlTest extends \PHPUnit_Framework_TestCase
             ->getMock();
 
         $renderer->method('getTemplatePath')->willReturnCallback(function ($template) {
-            return _ROOT_.'/test/view/' . $template . '.phtml';
+            return _ROOT_ . '/test/view/' . $template . '.phtml';
         });
         $this->html->setRenderer($renderer);
     }
@@ -40,9 +39,9 @@ class HtmlTest extends \PHPUnit_Framework_TestCase
         $dispatcher = $this->getDispatcher();
 
         $result = $this->html->formatOutput($dispatcher, ['suffix' => __METHOD__]);
-        $this->assertEquals('index:'.__METHOD__, $result);
+        $this->assertEquals('index:' . __METHOD__, $result);
     }
-    
+
     public function testFormatOutputWithInvalidOutput()
     {
         $this->setExpectedExceptionRegExp(\Exception::class, '/Invalid output given/');

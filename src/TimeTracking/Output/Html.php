@@ -2,7 +2,6 @@
 
 namespace TimeTracking\Output;
 
-
 use TimeTracking\Dispatcher;
 use TimeTracking\Renderer\Php;
 use Zend\Filter\FilterChain;
@@ -56,8 +55,9 @@ class Html implements OutputInterface
      * @param Dispatcher $dispatcher
      * @param mixed      $output
      *
-     * @return mixed
      * @throws \Exception
+     *
+     * @return mixed
      */
     public function formatOutput(Dispatcher $dispatcher, $output)
     {

@@ -7,7 +7,6 @@ use Zend\Validator\Exception;
 
 class MethodAccessibleValidator extends AbstractValidator
 {
-
     /**
      * Returns true if and only if $value meets the validation requirements
      *
@@ -15,10 +14,11 @@ class MethodAccessibleValidator extends AbstractValidator
      * getMessages() will return an array of messages that explain why the
      * validation failed.
      *
-     * @param  mixed $value
+     * @param mixed $value
+     *
+     * @throws Exception\RuntimeException If validation of $value is impossible
      *
      * @return bool
-     * @throws Exception\RuntimeException If validation of $value is impossible
      */
     public function isValid($value)
     {
