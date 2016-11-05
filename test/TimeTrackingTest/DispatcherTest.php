@@ -78,6 +78,52 @@ class DispatcherTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('test', $dispatcher->getAction(true));
     }
 
+    public function testDispatchSuccessWithSpecifiedControllerAndActionAndWithParamsAndDefaultValue()
+    {
+        $dispatcher = $this->getDispatcher([
+            static::PARAM_CONTROLLER => 'PHPUnit',
+            static::PARAM_ACTION     => 'params',
+            'param1'                 => 'foo',
+        ]);
+        $result = $dispatcher->dispatch();
+
+        $this->assertEquals('PHPUnit_Params:foo:bar', $result);
+        $this->assertEquals(PHPUnitController::class, $dispatcher->getController());
+        $this->assertEquals('paramsAction', $dispatcher->getAction());
+
+        $this->assertEquals('PHPUnit', $dispatcher->getController(true));
+        $this->assertEquals('params', $dispatcher->getAction(true));
+    }
+
+    public function testDispatchSuccessWithSpecifiedControllerAndActionAndWithAllParams()
+    {
+        $dispatcher = $this->getDispatcher([
+            static::PARAM_CONTROLLER => 'PHPUnit',
+            static::PARAM_ACTION     => 'params',
+            'param1'                 => 'foo',
+            'param2'                 => 'baz',
+        ]);
+        $result = $dispatcher->dispatch();
+
+        $this->assertEquals('PHPUnit_Params:foo:baz', $result);
+        $this->assertEquals(PHPUnitController::class, $dispatcher->getController());
+        $this->assertEquals('paramsAction', $dispatcher->getAction());
+
+        $this->assertEquals('PHPUnit', $dispatcher->getController(true));
+        $this->assertEquals('params', $dispatcher->getAction(true));
+    }
+
+    public function testDispatchFailWithMissingParam()
+    {
+        $dispatcher = $this->getDispatcher([
+            static::PARAM_CONTROLLER => 'PHPUnit',
+            static::PARAM_ACTION     => 'params',
+        ]);
+
+        $this->setExpectedException(\Exception::class, 'The parameter "param1" is required and missing!');
+        echo $dispatcher->dispatch();
+    }
+
     public function testDispatchFailWithEmptyValues()
     {
         $dispatcher = $this->getDispatcher([
@@ -132,6 +178,46 @@ class DispatcherTest extends \PHPUnit_Framework_TestCase
             }
         }
         $this->assertTrue($match, 'The expected "does not extend" error message is missing!');
+    }
+
+    public function testDispatchFailWithInvalidAction()
+    {
+        $dispatcher = $this->getDispatcher([
+            static::PARAM_CONTROLLER => 'PHPUnit',
+            static::PARAM_ACTION     => 'notExists',
+        ]);
+        $result = $dispatcher->dispatch();
+
+        $this->assertEquals('PHPUnit', $result); // indexAction
+
+        $match = false;
+        foreach ($dispatcher->getLastErrors() as $error) {
+            if (strpos($error, 'There is no action') !== false) {
+                $match = true;
+                break;
+            }
+        }
+        $this->assertTrue($match, 'The expected "There is no action" error message is missing!');
+    }
+
+    public function testDispatchFailWithProtectedAction()
+    {
+        $dispatcher = $this->getDispatcher([
+            static::PARAM_CONTROLLER => 'PHPUnit',
+            static::PARAM_ACTION     => 'protected',
+        ]);
+        $result = $dispatcher->dispatch();
+
+        $this->assertEquals('PHPUnit', $result); // indexAction
+
+        $match = false;
+        foreach ($dispatcher->getLastErrors() as $error) {
+            if (strpos($error, 'is not supported') !== false) {
+                $match = true;
+                break;
+            }
+        }
+        $this->assertTrue($match, 'The expected "is not supported" error message is missing!');
     }
 
     public function testGetOptions()

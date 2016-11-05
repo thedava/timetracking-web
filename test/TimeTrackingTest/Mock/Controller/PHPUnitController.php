@@ -25,4 +25,14 @@ class PHPUnitController extends AbstractController
     {
         return 'PHPUnit_FooBar';
     }
+
+    public function paramsAction($param1, $param2 = 'bar')
+    {
+        return 'PHPUnit_Params:' . $param1 . ':' . $param2;
+    }
+
+    protected function protectedAction()
+    {
+        return 'PHPUnit_Protected';
+    }
 }

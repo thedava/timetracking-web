@@ -42,6 +42,7 @@ class Dispatcher
         'e_controller_invalid'   => 'The controller "%s" does not extend from AbstractController!',
         'e_action_not_found'     => 'There is no action "%s" for controller "%s"!',
         'e_action_invalid'       => 'The action "%s" is not supported by controller "%s"!',
+        'e_param_missing'        => 'The parameter "%s" is required and missing!',
     ];
 
     /** @var array */
@@ -215,7 +216,7 @@ class Dispatcher
             if (!StaticValidator::execute($refMethod, MethodAccessibleValidator::class)) {
                 $this->lastErrors[] = sprintf($this->options['e_action_invalid'], $action, $this->controller);
                 $action = sprintf($tpl, $this->options['action_default']);
-                $refMethod = $refController->getMethod($this->options['action_default']);
+                $refMethod = $refController->getMethod($action);
             }
 
             $this->action = $action;
@@ -224,7 +225,7 @@ class Dispatcher
 
         $this->lastErrors[] = sprintf($this->options['e_action_not_found'], $action, $this->controller);
         $action = sprintf($tpl, $this->options['action_default']);
-        $refMethod = $refController->getMethod($this->options['action_default']);
+        $refMethod = $refController->getMethod($action);
 
         $this->action = $action;
         return $refMethod;
@@ -234,13 +235,27 @@ class Dispatcher
      * @param array|\ReflectionParameter[] $params
      *
      * @return array
+     * @throws \Exception
      */
     protected function extractParams(array $params)
     {
         $result = [];
+        $undefinedValue = new \stdClass();
 
         foreach ($params as $param) {
-            $result[$param->getName()] = $this->extract($param->getName(), $param->getDefaultValue(), null, false);
+            $defaultValue = $undefinedValue;
+            if ($param->isDefaultValueAvailable()) {
+                $defaultValue = $param->getDefaultValue();
+            }
+
+            $result[$param->getName()] = $paramResult = $this->extract($param->getName(), $defaultValue, null, false);
+
+            // Check for undefined params
+            if ($paramResult === $undefinedValue) {
+                $message = sprintf($this->options['e_param_missing'], $param->getName());
+                $this->lastErrors[] = $message;
+                throw new \Exception($message);
+            }
         }
 
         return $result;
