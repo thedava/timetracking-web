@@ -1,7 +1,7 @@
 language: php
 
 notifications:
-  email: false
+  email: true
 
 php:
   - 5.5
