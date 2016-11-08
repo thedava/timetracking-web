@@ -25,7 +25,8 @@
         "zendframework/zend-validator": ">=2.5 < 2.6",
         "zendframework/zend-servicemanager": ">=2.5 <2.6",
         "zendframework/zend-stdlib": ">=2.5 <2.6",
-        "zendframework/zend-filter": ">=2.5 <2.6"
+        "zendframework/zend-filter": ">=2.5 <2.6",
+        "natxet/cssmin": "^3.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^4.8",

@@ -1,7 +1,6 @@
 <?php
 
 use Leafo\ScssPhp\Compiler;
-use Leafo\ScssPhp\Formatter\Compressed;
 use Leafo\ScssPhp\Formatter\Expanded;
 use TimeTracking\Config;
 use Zend\Console\ColorInterface;
@@ -9,7 +8,7 @@ use Zend\Console\Console;
 
 require_once __DIR__ . '/../root.php';
 
-$expanded = function ($config) {
+$expanded = function ($config, $source, $sourceFolder) {
     $compiler = new Compiler();
     $compiler->setFormatter(Expanded::class);
     $compiler->setImportPaths([_ROOT_ . '/assets/scss']);
@@ -21,14 +20,21 @@ $expanded = function ($config) {
         return sprintf('url("%s?%d")', $backgroundImage, $config['images']['suffix']['after']);
     });
 
-    return $compiler;
+    return $compiler->compile($source, $sourceFolder);
 };
 
-$compressed = function () {
-    $compiler = new Compiler();
-    $compiler->setFormatter(Compressed::class);
-
-    return $compiler;
+$compressed = function ($config, $source, $sourceFolder) {
+    return CssMin::minify($source, [
+        'ImportImports'           => [
+            'BasePath' => $sourceFolder,
+        ],
+        'ConvertLevel3Properties' => true,
+        'RemoveSource'            => true,
+    ], [
+        'ConvertNamedColors'       => true,
+        'CompressColorValues'      => true,
+        'CompressExpressionValues' => true,
+    ]);
 };
 
 $config = Config::get()['assets']['scss'];
@@ -48,11 +54,8 @@ $console->writeLine(count($config['compilers']));
 $console->writeLine();
 
 foreach ($config['compilers'] as $compilerConfig) {
-    /** @var Compiler $compiler */
-    $compiler = call_user_func($compilerConfig['callback'], $config);
-
     $src = file_get_contents($compilerConfig['source']);
-    $result = $compiler->compile($src, dirname($compilerConfig['source']));
+    $result = call_user_func_array($compilerConfig['callback'], [$config, $src, dirname($compilerConfig['source'])]);
     file_put_contents($compilerConfig['target'], $result);
 
     $console->write('Successfully compiled ', ColorInterface::GREEN);
