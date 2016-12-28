@@ -19,7 +19,7 @@
     },
     "require": {
         "php": ">=5.5",
-        "thedava/basic-library": "dev-master"
+        "thedava/basic-library": "^0.2.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^4.8",
@@ -39,8 +39,8 @@
         "coverage": "php vendor/bin/phpunit --coverage-html public/coverage",
         "phplint": "php vendor/thedava/basic-library/bin/phplint.php",
         "phpcs": [
-            "php vendor/thedava/basic-library/bin/phpcs.php",
-            "php-cs-fixer.phar -vv fix --config-file vendor/thedava/basic-library/data/php_cs.php"
+            "bash vendor/thedava/basic-library/bin/phpcs.sh",
+            "php php-cs-fixer.phar -vv fix --config-file vendor/thedava/basic-library/data/php_cs.php"
         ]
     }
 }

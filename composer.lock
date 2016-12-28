@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "1936b365f592b90b26a3c075fb82f0a7",
-    "content-hash": "95d123cc7c9c894412c84c6b66eec60c",
+    "hash": "4c63256e38c956aa2801bfe4761fc9e3",
+    "content-hash": "7543aae3abed916e4ab6affa4e0afac1",
     "packages": [
         {
             "name": "leafo/scssphp",
@@ -215,16 +215,16 @@
         },
         {
             "name": "thedava/basic-library",
-            "version": "dev-master",
+            "version": "0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thedava/basic-library.git",
-                "reference": "f634191248046fd11b213549d7117af573ede92f"
+                "reference": "c91bc626e81ef7899eca9bdfa14617f4d6293912"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thedava/basic-library/zipball/f634191248046fd11b213549d7117af573ede92f",
-                "reference": "f634191248046fd11b213549d7117af573ede92f",
+                "url": "https://api.github.com/repos/thedava/basic-library/zipball/c91bc626e81ef7899eca9bdfa14617f4d6293912",
+                "reference": "c91bc626e81ef7899eca9bdfa14617f4d6293912",
                 "shasum": ""
             },
             "require": {
@@ -266,7 +266,7 @@
                 }
             ],
             "description": "A basic library for thedava/* projects",
-            "time": "2016-12-25 01:05:02"
+            "time": "2016-12-28 17:42:57"
         },
         {
             "name": "zendframework/zend-console",
@@ -2312,9 +2312,7 @@
     ],
     "aliases": [],
     "minimum-stability": "beta",
-    "stability-flags": {
-        "thedava/basic-library": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
