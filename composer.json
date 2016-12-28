@@ -30,17 +30,17 @@
         "post-install-cmd": [
             "@build"
         ],
-        "scss": "php vendor/bin/scss.php",
-        "js": "php vendor/bin/js.php",
+        "scss": "bash vendor/bin/scss.php",
+        "js": "bash vendor/bin/js.php",
         "build": [
             "@scss",
             "@js"
         ],
-        "coverage": "php vendor/bin/phpunit --coverage-html public/coverage",
-        "phplint": "php vendor/bin/phplint.php",
+        "coverage": "bash vendor/bin/phpunit --coverage-html public/coverage",
+        "phplint": "bash vendor/bin/phplint.php",
         "phpcs": [
-            "php vendor/bin/phpcs.php",
-            "php php-cs-fixer.phar -vv fix --config-file vendor/thedava/basic-library/data/php_cs.php"
+            "bash vendor/bin/phpcs.php",
+            "php-cs-fixer.phar -vv fix --config-file vendor/thedava/basic-library/data/php_cs.php"
         ]
     }
 }
