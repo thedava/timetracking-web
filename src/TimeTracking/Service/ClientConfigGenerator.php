@@ -2,7 +2,7 @@
 
 namespace TimeTracking\Service;
 
-use TimeTracking\Config;
+use TheDava\Config;
 
 class ClientConfigGenerator
 {

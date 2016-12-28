@@ -19,14 +19,7 @@
     },
     "require": {
         "php": ">=5.5",
-        "leafo/scssphp": "^0.6.3",
-        "matthiasmullie/minify": "^1.3",
-        "zendframework/zend-console": ">=2.5 <2.6",
-        "zendframework/zend-validator": ">=2.5 < 2.6",
-        "zendframework/zend-servicemanager": ">=2.5 <2.6",
-        "zendframework/zend-stdlib": ">=2.5 <2.6",
-        "zendframework/zend-filter": ">=2.5 <2.6",
-        "natxet/cssmin": "^3.0"
+        "thedava/basic-library": "dev-master"
     },
     "require-dev": {
         "phpunit/phpunit": "^4.8",
@@ -37,17 +30,17 @@
         "post-install-cmd": [
             "@build"
         ],
-        "scss": "php bin/scss.php",
-        "js": "php bin/js.php",
+        "scss": "php vendor/bin/scss.php",
+        "js": "php vendor/bin/js.php",
         "build": [
             "@scss",
             "@js"
         ],
         "coverage": "php vendor/bin/phpunit --coverage-html public/coverage",
-        "phplint": "php bin/phplint.php",
+        "phplint": "php vendor/bin/phplint.php",
         "phpcs": [
-            "php bin/phpcs.php",
-            "php php-cs-fixer.phar -vv fix --config-file data/php_cs.php"
+            "php vendor/bin/phpcs.php",
+            "php php-cs-fixer.phar -vv fix --config-file vendor/thedava/basic-library/data/php_cs.php"
         ]
     }
 }

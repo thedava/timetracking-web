@@ -2,8 +2,9 @@
 
 namespace TimeTracking\Controller;
 
-use TimeTracking\Config;
-use TimeTracking\Controller\Plugins\RedirectControllerPlugin;
+use TheDava\Config;
+use TheDava\Controller\AbstractController;
+use TheDava\Controller\Plugins\RedirectControllerPlugin;
 use TimeTracking\Service\ClientConfigGenerator;
 
 class ClientController extends AbstractController

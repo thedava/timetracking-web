@@ -4,7 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "b17220c1f599a9d49f3d5222e6cd0980",
+    "hash": "eddb3904af43f1138f2a89110b0e5912",
+    "content-hash": "5243d7c03c035304a865526a45033873",
     "packages": [
         {
             "name": "leafo/scssphp",
@@ -212,6 +213,61 @@
             "time": "2015-09-25 11:13:11"
         },
         {
+            "name": "thedava/basic-library",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thedava/basic-library.git",
+                "reference": "f634191248046fd11b213549d7117af573ede92f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thedava/basic-library/zipball/f634191248046fd11b213549d7117af573ede92f",
+                "reference": "f634191248046fd11b213549d7117af573ede92f",
+                "shasum": ""
+            },
+            "require": {
+                "leafo/scssphp": "^0.6.3",
+                "matthiasmullie/minify": "^1.3",
+                "natxet/cssmin": "^3.0",
+                "php": ">=5.5",
+                "zendframework/zend-console": ">=2.5 <2.6",
+                "zendframework/zend-filter": ">=2.5 <2.6",
+                "zendframework/zend-inputfilter": ">=2.5 <2.6",
+                "zendframework/zend-servicemanager": ">=2.5 <2.6",
+                "zendframework/zend-stdlib": ">=2.5 <2.6",
+                "zendframework/zend-validator": ">=2.5 <2.6"
+            },
+            "require-dev": {
+                "phpunit/php-code-coverage": "~2.1",
+                "phpunit/phpunit": "^4.8",
+                "satooshi/php-coveralls": "^1.0"
+            },
+            "bin": [
+                "bin/js.php",
+                "bin/phpcs.php",
+                "bin/phplint.php",
+                "bin/scss.php"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "TheDava\\": "src/TheDava"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "dava"
+                }
+            ],
+            "description": "A basic library for thedava/* projects",
+            "time": "2016-12-25 01:05:02"
+        },
+        {
             "name": "zendframework/zend-console",
             "version": "2.5.1",
             "source": {
@@ -320,6 +376,58 @@
                 "zf2"
             ],
             "time": "2015-06-03 15:32:01"
+        },
+        {
+            "name": "zendframework/zend-inputfilter",
+            "version": "2.5.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zendframework/zend-inputfilter.git",
+                "reference": "3208cddbb92df029230cde676a5c8e5a22b531c6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zendframework/zend-inputfilter/zipball/3208cddbb92df029230cde676a5c8e5a22b531c6",
+                "reference": "3208cddbb92df029230cde676a5c8e5a22b531c6",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5",
+                "zendframework/zend-filter": "~2.5",
+                "zendframework/zend-stdlib": "~2.5",
+                "zendframework/zend-validator": "^2.5.3"
+            },
+            "require-dev": {
+                "fabpot/php-cs-fixer": "1.7.*",
+                "phpunit/phpunit": "^4.5",
+                "zendframework/zend-i18n": "~2.5",
+                "zendframework/zend-servicemanager": "~2.5"
+            },
+            "suggest": {
+                "zendframework/zend-servicemanager": "To support plugin manager support"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.5-dev",
+                    "dev-develop": "2.6-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Zend\\InputFilter\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "homepage": "https://github.com/zendframework/zend-inputfilter",
+            "keywords": [
+                "inputfilter",
+                "zf2"
+            ],
+            "time": "2015-09-03 22:31:38"
         },
         {
             "name": "zendframework/zend-servicemanager",
@@ -2196,7 +2304,9 @@
     ],
     "aliases": [],
     "minimum-stability": "beta",
-    "stability-flags": [],
+    "stability-flags": {
+        "thedava/basic-library": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

@@ -1,6 +1,6 @@
 <?php
 
-use TimeTracking\View\Helper\TitleViewHelper;
+use TheDava\View\Helper\TitleViewHelper;
 
 return [
     'meta' => [

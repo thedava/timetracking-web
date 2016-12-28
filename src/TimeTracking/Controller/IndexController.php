@@ -2,7 +2,8 @@
 
 namespace TimeTracking\Controller;
 
-use TimeTracking\Controller\Plugins\RedirectControllerPlugin;
+use TheDava\Controller\AbstractController;
+use TheDava\Controller\Plugins\RedirectControllerPlugin;
 
 class IndexController extends AbstractController
 {

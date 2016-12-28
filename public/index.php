@@ -1,13 +1,16 @@
 <?php
 
+use TheDava\Dispatcher;
+use TheDava\Output\Html;
+
 require_once __DIR__ . '/../root.php';
 
 if (!check_cli_server()) {
     return false;
 }
 
-$output = new \TimeTracking\Output\Html();
-$dispatcher = new \TimeTracking\Dispatcher(array_merge($_GET, $_POST));
+$output = new Html();
+$dispatcher = new Dispatcher(array_merge($_GET, $_POST));
 
 try {
     $result = $dispatcher->dispatch();

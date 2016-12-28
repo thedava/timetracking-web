@@ -2,6 +2,8 @@
 
 namespace TimeTracking\Controller;
 
+use TheDava\Controller\AbstractController;
+
 class ErrorController extends AbstractController
 {
     /**

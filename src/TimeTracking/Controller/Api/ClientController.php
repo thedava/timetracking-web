@@ -2,7 +2,7 @@
 
 namespace TimeTracking\Controller\Api;
 
-use TimeTracking\Controller\AbstractController;
+use TheDava\Controller\AbstractController;
 use TimeTracking\Service\ClientConfigGenerator;
 
 class ClientController extends AbstractController
